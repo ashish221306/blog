@@ -13,12 +13,13 @@
   --darkcolor: #000;
   --lineheight: 2;
   --baseColor:#ccc;
+  --basefontsize:15px
 }
 body {
   scroll-behavior: smooth;
   min-height: 100vh;
   font-family: sans-serif;
-  height: 3000px;
+  
 }
 header {
   height: 100px;
@@ -55,6 +56,8 @@ nav ul {
 }
 nav ul li {
   display: inline-block;
+  position: relative;
+  
 }
 
 nav ul li a {
@@ -66,13 +69,23 @@ nav ul li a {
   width: 0%;
   
 }
-nav ul li a:hover {
- 
-  border-bottom: 1px solid;
-  color: var(--headingcolor);
-  transition: all 0.6s ease-in;
-  width: 100%;
+nav ul li::after{
+  content: '';
+  margin-top: 20px;
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    width: 0;
+    height: 2px;
+    background: var(--headingcolor);
+    transition: width .3s;
 }
+nav ul li:hover::after{
+  width: 90%;
+}
+
+
 
 .show-nav {
   display: block;
@@ -157,11 +170,12 @@ section#blogpost h2 {
 }
 footer {
   width: 100%;
+  padding: 20px 20px;
 }
 
 
 
-footer .footer-bottom {
+.footer-bottom {
   height: 70px;
   background: #ddd;
   text-align: center;
@@ -174,11 +188,13 @@ footer .footer-bottom {
 .footerItem {
   height: 100%;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-gap: 10px;
+  grid-template-columns: auto auto auto 100%;
+  padding: 10px;
 }
 .footerItem div {
   height: 100%;
-  background: #fff;
+  background:var(--theme-bg);
 
   display: flex;
   justify-content: flex-start;
@@ -187,10 +203,16 @@ footer .footer-bottom {
   text-align: left;
   padding: 20px;
 }
+.footerItem .newsletter{
+  grid-template-areas: auto;
+}
 .footerItem ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+.footerItem .footerinfo{
+  padding: 10px 0px;
 }
 .footerItem ul li {
   padding: 10px 0px;
@@ -232,3 +254,17 @@ footer .footer-bottom {
   .social-icons li .fa.youtube{color: red;}
   .social-icons li a > i.twitter{color: rgba(0, 0, 255, 0.664);}
   .social-icons li a > i.instagram{color: rgb(218, 15, 126);}
+
+
+  .footerItem .item form{
+    padding: 10px;
+  }
+  .footerItem .item form{padding: 10px;outline: none;
+  font-size: var(--basefontsize);
+  background: var(--theme-bg);
+  color: var(--headingcolor);
+
+  }
+
+  .footerItem .item form input{padding: 10px;outline: none;}
+  .footerItem .item form button{padding: 10px 20px;outline: none;border-radius: 0;cursor: pointer;}
